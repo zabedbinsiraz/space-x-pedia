@@ -5,7 +5,7 @@ import fetchedSlice, { filterSlice, missionSlice } from '../redux/slice';
 export const rootReducer = combineReducers({
     // auth: authSlice.reducer,
     fetched: fetchedSlice.reducer,
-    filter: filterSlice.reducer,
     mission: missionSlice.reducer,
+    filter: filterSlice.reducer,
 });
 export default rootReducer;

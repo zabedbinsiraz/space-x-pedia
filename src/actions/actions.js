@@ -22,10 +22,10 @@ const setDataAction = (data) => (dispatch) => {
     dispatch(slice.setFetchedData(data));
 };
 export const setFilterAction = (data) => (dispatch) => {
-    dispatch(filter.setFetchedData(data));
+    dispatch(filter.setFilteredData(data));
 };
 export const setMissionAction = (data) => (dispatch) => {
-    dispatch(mission.setFetchedData(data));
+    dispatch(mission.setMissionData(data));
 };
 export default setDataAction;
 console.log(fetchedSlice);

@@ -5,13 +5,12 @@ import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import store from './store/store';
 
-// console.log(store);
-
 // const checkDispatch = () => {
 //     console.log('this is from store dispatch');
 // };
 
-// store.dispatch(checkDispatch());
+// store.dispatch(setDataAction());
+// console.log(store);
 
 ReactDOM.render(
     <React.StrictMode>

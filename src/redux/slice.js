@@ -2,13 +2,15 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const fetchedSlice = createSlice({
     name: 'fetched',
-    initialState: {
-        mission_name: 'USCV-1 (NASA Crew Flight 1)',
-        links: {
-            mission_patch_small:
-                'https://spacexpatches.weebly.com/uploads/8/8/4/0/88400246/uscv1-nasa-spacex_orig.png',
+    initialState: [
+        {
+            mission_name: 'USCV-1 (NASA Crew Flight 1)',
+            links: {
+                mission_patch_small:
+                    'https://spacexpatches.weebly.com/uploads/8/8/4/0/88400246/uscv1-nasa-spacex_orig.png',
+            },
         },
-    },
+    ],
     reducers: {
         // eslint-disable-next-line no-undef
         setFetchedData: (state, action) =>
@@ -26,7 +28,7 @@ export const filterSlice = createSlice({
         // eslint-disable-next-line no-unused-vars
         setFilteredData: (state, action) =>
             // eslint-disable-next-line no-param-reassign
-            state,
+            action.payload,
     },
 });
 export const missionSlice = createSlice({
@@ -35,7 +37,7 @@ export const missionSlice = createSlice({
     reducers: {
         // eslint-disable-next-line no-undef
         // eslint-disable-next-line no-unused-vars
-        setFilteredData: (state, action) =>
+        setMissionData: (state, action) =>
             // eslint-disable-next-line no-param-reassign
             action.payload,
     },
