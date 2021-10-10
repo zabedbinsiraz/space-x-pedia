@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import './Header.css';
-import './LaunchFilter.css';
+import { Col, Container, Row } from 'react-bootstrap';
 
-const sucess = ['All', 'Yes', 'No', 'Pending'];
+const success = ['All', 'Yes', 'No', 'Pending'];
 const date = [
     'All',
     '2020',
@@ -30,42 +29,53 @@ const location = [
 ];
 
 const LaunchFilter = ({ filter = 'All', handleChange }) => (
-    <div className="filter-div">
-        <span className="filter-by">FILTER BY:</span>
-        <div className="success-div">
-            <span>LAUNCH SUCCESS: </span>
-            {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-            <select id="sucess" onChange={handleChange} value={filter}>
-                {sucess.map((x) => (
-                    <option key={Math.random()} value={x}>
-                        {x}
-                    </option>
-                ))}
-            </select>
-        </div>
-        <div className="year-div">
-            <span>YEAR: </span>
-            {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-            <select id="Date" onChange={handleChange} value={filter}>
-                {date.map((x) => (
-                    <option key={Math.random()} value={x}>
-                        {x}
-                    </option>
-                ))}
-            </select>
-        </div>
-        <div className="location-div">
-            <span>LAUNCH LOCATION: </span>
-            {/* eslint-disable-next-line jsx-a11y/no-onchange */}
-            <select id="Location" onChange={handleChange} value={filter} className="location">
-                {location.map((x) => (
-                    <option key={Math.random()} value={x}>
-                        {x}
-                    </option>
-                ))}
-            </select>
-        </div>
-    </div>
+    <Container fluid>
+        <Row className="m-2 p-2 text-white" xs={1} md={3}>
+            <Col>
+                <span>LAUNCH SUCCESS: </span>
+                {/* eslint-disable-next-line jsx-a11y/no-onchange */}
+                <select
+                    style={{ width: '100px' }}
+                    id="success"
+                    onChange={handleChange}
+                    value={filter}
+                >
+                    {success.map((x) => (
+                        <option key={Math.random()} value={x}>
+                            {x}
+                        </option>
+                    ))}
+                </select>
+            </Col>
+            <Col>
+                <span>YEAR: </span>
+                {/* eslint-disable-next-line jsx-a11y/no-onchange */}
+                <select style={{ width: '100px' }} id="Date" onChange={handleChange} value={filter}>
+                    {date.map((x) => (
+                        <option key={Math.random()} value={x}>
+                            {x}
+                        </option>
+                    ))}
+                </select>
+            </Col>
+            <Col>
+                <span>LAUNCH LOCATION: </span>
+                {/* eslint-disable-next-line jsx-a11y/no-onchange */}
+                <select
+                    style={{ width: '100px' }}
+                    id="Location"
+                    onChange={handleChange}
+                    value={filter}
+                >
+                    {location.map((x) => (
+                        <option key={Math.random()} value={x}>
+                            {x}
+                        </option>
+                    ))}
+                </select>
+            </Col>
+        </Row>
+    </Container>
 );
 
 LaunchFilter.propTypes = {
