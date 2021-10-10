@@ -8,7 +8,7 @@ const location = ['All', 'Upcoming', 'Launched'];
 
 const LaunchFilter = ({ filter = 'All', handleChange }) => (
     <Container fluid>
-        <Row className="m-2 p-2 text-white" xs={1} md={3}>
+        <Row className="m-2 p-2" xs={1} md={3}>
             <Col>
                 <span>LAUNCH SUCCESS: </span>
                 {/* eslint-disable-next-line jsx-a11y/no-onchange */}
@@ -26,7 +26,7 @@ const LaunchFilter = ({ filter = 'All', handleChange }) => (
                 </select>
             </Col>
             <Col>
-                <span>YEAR: </span>
+                <span>Duration: </span>
                 {/* eslint-disable-next-line jsx-a11y/no-onchange */}
                 <select style={{ width: '100px' }} id="Date" onChange={handleChange} value={filter}>
                     {date.map((x) => (
@@ -37,7 +37,7 @@ const LaunchFilter = ({ filter = 'All', handleChange }) => (
                 </select>
             </Col>
             <Col>
-                <span>LAUNCH LOCATION: </span>
+                <span>WHAT IS UPCOMING: </span>
                 {/* eslint-disable-next-line jsx-a11y/no-onchange */}
                 <select
                     style={{ width: '100px' }}
