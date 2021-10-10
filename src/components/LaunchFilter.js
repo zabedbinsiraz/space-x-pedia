@@ -2,31 +2,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 
-const success = ['All', 'Yes', 'No', 'Pending'];
-const date = [
-    'All',
-    '2020',
-    '2019',
-    '2018',
-    '2017',
-    '2016',
-    '2015',
-    '2014',
-    '2013',
-    '2012',
-    '2010',
-    '2009',
-    '2008',
-    '2007',
-    '2006',
-];
-const location = [
-    'All',
-    'Vandenberg Air Force Base Space Launch Complex 4E',
-    'Kwajalein Atoll Omelek Island',
-    'Cape Canaveral Air Force Station Space Launch Complex 40',
-    'Kennedy Space Center Historic Launch Complex 39A',
-];
+const success = ['All', 'Success', 'Failure'];
+const date = ['All', 'Last Week', 'Last Month', 'Last Year'];
+const location = ['All', 'Upcoming', 'Launched'];
 
 const LaunchFilter = ({ filter = 'All', handleChange }) => (
     <Container fluid>
@@ -63,7 +41,7 @@ const LaunchFilter = ({ filter = 'All', handleChange }) => (
                 {/* eslint-disable-next-line jsx-a11y/no-onchange */}
                 <select
                     style={{ width: '100px' }}
-                    id="Location"
+                    id="Upcoming"
                     onChange={handleChange}
                     value={filter}
                 >

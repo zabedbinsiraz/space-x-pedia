@@ -25,5 +25,4 @@ const MissionCard = ({ mission }) => (
         </Card>
     </Col>
 );
-
 export default MissionCard;

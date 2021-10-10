@@ -8,7 +8,6 @@ import LaunchFilter from './LaunchFilter';
 import MissionCard from './MissionCard';
 
 let targetId;
-
 const MissionList = () => {
     const missions = useSelector((state) => state.fetched);
     const filter = useSelector((state) => state.filter);
@@ -43,19 +42,42 @@ const MissionList = () => {
         switch (parameter) {
             case mission.launch_success:
                 if (mission.launch_success === false) {
-                    total = 'No';
+                    total = 'Failure';
                 } else if (mission.launch_success === true) {
-                    total = 'Yes';
-                } else {
-                    total = 'Pending';
+                    total = 'Success';
                 }
                 return total;
-            case mission.launch_year:
-                total = mission.launch_year;
+
+            case mission.launch_date_local:
+                if (
+                    Math.round(
+                        Math.abs((new Date(mission.launch_date_local) - new Date()) / 86400000)
+                    ) <= 7
+                ) {
+                    total = 'Last Week';
+                } else if (
+                    Math.round(
+                        Math.abs((new Date(mission.launch_date_local) - new Date()) / 86400000)
+                    ) <= 30
+                ) {
+                    total = 'Last Month';
+                } else if (
+                    Math.round(
+                        Math.abs((new Date(mission.launch_date_local) - new Date()) / 86400000)
+                    ) <= 365
+                ) {
+                    total = 'Last Year';
+                }
                 return total;
-            case mission.launch_site.site_name_long:
-                total = mission.launch_site.site_name_long;
+
+            case mission.upcoming:
+                if (mission.upcoming === true) {
+                    total = 'Upcoming';
+                } else if (mission.upcoming === false) {
+                    total = 'Launched';
+                }
                 return total;
+
             default:
                 total = 'All';
                 return total;
@@ -68,17 +90,16 @@ const MissionList = () => {
         filtered = missions;
     } else {
         filtered = missions.filter((mission) => {
-            if (targetId === 'sucess') {
+            if (targetId === 'success') {
                 total = filterDefine(mission, mission.launch_success);
             } else if (targetId === 'Date') {
-                total = filterDefine(mission, mission.launch_year);
+                total = filterDefine(mission, mission.launch_date_local);
             } else {
-                total = filterDefine(mission, mission.launch_site.site_name_long);
+                total = filterDefine(mission, mission.upcoming);
             }
             return total === filter;
         });
     }
-    console.log(filtered);
     return (
         <Container>
             <LaunchFilter filter={filter} handleChange={handleChange} />
@@ -87,28 +108,6 @@ const MissionList = () => {
                     <MissionCard key={mission.mission_name} mission={mission} />
                 ))}
             </Row>
-            {/* <ul className="launches-list">
-                {filtered?.map((mission) => (
-                    <li key={mission.mission_name} className="launch">
-                        <div className="launch-buttondiv">
-                            <Link to={`mission/${mission.flight_number}`}>
-                                <button type="button">
-                                    {mission.links.mission_patch_small && (
-                                        <img
-                                            src={mission.links.mission_patch_small}
-                                            alt={mission.mission_name}
-                                        />
-                                    )}
-                                    {!mission.links.mission_patch_small && (
-                                        <img src="rocket.png" alt={mission.mission_name} />
-                                    )}
-                                </button>
-                            </Link>
-                        </div>
-                        <div className="launch-title">{mission.mission_name}</div>
-                    </li>
-                ))}
-            </ul> */}
         </Container>
     );
 };
